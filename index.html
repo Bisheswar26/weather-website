@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>WeatherVerse 3D</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+</head>
+
+<body>
+
+<!-- =====================================================
+     A-FRAME 3D WORLD
+===================================================== -->
+
+<a-scene
+    id="scene"
+    embedded
+    fog="type: exponential; color: #9bdcff; density: 0.015"
+    renderer="antialias: true">
+
+    <!-- SKY -->
+
+    <a-sky
+        id="sky"
+        color="#65c9ff">
+    </a-sky>
+
+
+    <!-- =================================================
+         SUN
+    ================================================== -->
+
+    <a-entity
+        id="sunGroup"
+        position="0 7 -15">
+
+        <a-sphere
+            radius="2"
+            color="#FFD93D"
+            material="emissive: #FFD93D; emissiveIntensity: 2">
+
+            <a-animation
+                attribute="scale"
+                from="1 1 1"
+                to="1.15 1.15 1.15"
+                dur="2500"
+                direction="alternate"
+                repeat="indefinite">
+            </a-animation>
+
+        </a-sphere>
+
+    </a-entity>
+
+
+    <!-- =================================================
+         MOON
+    ================================================== -->
+
+    <a-sphere
+        id="moon"
+        position="-7 7 -15"
+        radius="1.5"
+        color="#eeeeff"
+        visible="false">
+    </a-sphere>
+
+
+    <!-- =================================================
+         CLOUD 1
+    ================================================== -->
+
+    <a-entity
+        class="cloud"
+        position="-8 6 -15">
+
+        <a-sphere
+            position="0 0 0"
+            radius="1.3"
+            color="#ffffff">
+        </a-sphere>
+
+        <a-sphere
+            position="1.5 0.3 0"
+            radius="1.7"
+            color="#ffffff">
+        </a-sphere>
+
+        <a-sphere
+            position="3 0 0"
+            radius="1.2"
+            color="#ffffff">
+        </a-sphere>
+
+        <a-sphere
+            position="1.5 -0.4 0.4"
+            radius="1.4"
+            color="#ffffff">
+        </a-sphere>
+
+    </a-entity>
+
+
+    <!-- CLOUD 2 -->
+
+    <a-entity
+        class="cloud"
+        position="8 5 -18">
+
+        <a-sphere
+            position="0 0 0"
+            radius="1.4"
+            color="#eeeeee">
+        </a-sphere>
+
+        <a-sphere
+            position="1.6 0.4 0"
+            radius="1.8"
+            color="#ffffff">
+        </a-sphere>
+
+        <a-sphere
+            position="3 0 0"
+            radius="1.3"
+            color="#eeeeee">
+        </a-sphere>
+
+    </a-entity>
+
+
+    <!-- =================================================
+         MOUNTAINS
+    ================================================== -->
+
+    <a-cone
+        position="-12 2 -25"
+        radius-bottom="7"
+        radius-top="0"
+        height="10"
+        color="#536d7a">
+    </a-cone>
+
+    <a-cone
+        position="-5 3 -28"
+        radius-bottom="8"
+        radius-top="0"
+        height="14"
+        color="#607d8b">
+    </a-cone>
+
+    <a-cone
+        position="5 2 -27"
+        radius-bottom="7"
+        radius-top="0"
+        height="11"
+        color="#455a64">
+    </a-cone>
+
+    <a-cone
+        position="13 3 -25"
+        radius-bottom="8"
+        radius-top="0"
+        height="14"
+        color="#607d8b">
+    </a-cone>
+
+
+    <!-- =================================================
+         GROUND
+    ================================================== -->
+
+    <a-plane
+        position="0 -1 -10"
+        rotation="-90 0 0"
+        width="60"
+        height="60"
+        color="#319b58">
+    </a-plane>
+
+
+    <!-- =================================================
+         ROAD
+    ================================================== -->
+
+    <a-plane
+        position="0 -0.96 -13"
+        rotation="-90 0 0"
+        width="10"
+        height="45"
+        color="#333333">
+    </a-plane>
+
+
+    <!-- ROAD LINES -->
+
+    <a-box
+        position="0 -0.9 -4"
+        width="0.25"
+        height="0.05"
+        depth="3"
+        color="#ffffff">
+    </a-box>
+
+    <a-box
+        position="0 -0.9 -10"
+        width="0.25"
+        height="0.05"
+        depth="3"
+        color="#ffffff">
+    </a-box>
+
+    <a-box
+        position="0 -0.9 -16"
+        width="0.25"
+        height="0.05"
+        depth="3"
+        color="#ffffff">
+    </a-box>
+
+    <a-box
+        position="0 -0.9 -22"
+        width="0.25"
+        height="0.05"
+        depth="3"
+        color="#ffffff">
+    </a-box>
+
+
+    <!-- =================================================
+         HOUSE
+    ================================================== -->
+
+    <a-box
+        position="-7 1 -13"
+        width="4"
+        height="3"
+        depth="4"
+        color="#e8a87c">
+    </a-box>
+
+    <a-cone
+        position="-7 3.5 -13"
+        radius-bottom="3"
+        radius-top="0"
+        height="2"
+        color="#8d3b35"
+        segments="4"
+        rotation="0 45 0">
+    </a-cone>
+
+
+    <!-- HOUSE WINDOWS -->
+
+    <a-box
+        position="-7.8 1.5 -10.95"
+        width="0.8"
+        height="0.8"
+        depth="0.1"
+        color="#7dd3fc">
+    </a-box>
+
+    <a-box
+        position="-6.2 1.5 -10.95"
+        width="0.8"
+        height="0.8"
+        depth="0.1"
+        color="#7dd3fc">
+    </a-box>
+
+
+    <!-- =================================================
+         TREES
+    ================================================== -->
+
+    <a-entity
+        class="tree"
+        position="8 0 -11">
+
+        <a-cylinder
+            position="0 1 0"
+            radius="0.35"
+            height="2"
+            color="#6b4226">
+        </a-cylinder>
+
+        <a-sphere
+            position="0 2.5 0"
+            radius="1.4"
+            color="#228b45">
+        </a-sphere>
+
+        <a-sphere
+            position="-0.8 2.2 0"
+            radius="1"
+            color="#2e9f50">
+        </a-sphere>
+
+        <a-sphere
+            position="0.8 2.2 0"
+            radius="1"
+            color="#2e9f50">
+        </a-sphere>
+
+    </a-entity>
+
+
+    <a-entity
+        class="tree"
+        position="10 0 -17">
+
+        <a-cylinder
+            position="0 1 0"
+            radius="0.35"
+            height="2"
+            color="#6b4226">
+        </a-cylinder>
+
+        <a-sphere
+            position="0 2.5 0"
+            radius="1.5"
+            color="#228b45">
+        </a-sphere>
+
+    </a-entity>
+
+
+    <!-- =================================================
+         WATER
+    ================================================== -->
+
+    <a-plane
+        position="15 -0.8 -17"
+        rotation="-90 0 0"
+        width="10"
+        height="15"
+        color="#2196f3"
+        opacity="0.75">
+    </a-plane>
+
+
+    <!-- =================================================
+         RAIN PARTICLES
+    ================================================== -->
+
+    <a-entity id="rain">
+
+        <a-cylinder
+            class="raindrop"
+            position="-4 7 -8"
+            radius="0.025"
+            height="0.8"
+            color="#9be7ff">
+        </a-cylinder>
+
+        <a-cylinder
+            class="raindrop"
+            position="-2 8 -10"
+            radius="0.025"
+            height="0.8"
+            color="#9be7ff">
+        </a-cylinder>
+
+        <a-cylinder
+            class="raindrop"
+            position="0 7 -7"
+            radius="0.025"
+            height="0.8"
+            color="#9be7ff">
+        </a-cylinder>
+
+        <a-cylinder
+            class="raindrop"
+            position="2 9 -11"
+            radius="0.025"
+            height="0.8"
+            color="#9be7ff">
+        </a-cylinder>
+
+        <a-cylinder
+            class="raindrop"
+            position="4 7 -9"
+            radius="0.025"
+            height="0.8"
+            color="#9be7ff">
+        </a-cylinder>
+
+        <a-cylinder
+            class="raindrop"
+            position="6 8 -13"
+            radius="0.025"
+            height="0.8"
+            color="#9be7ff">
+        </a-cylinder>
+
+    </a-entity>
+
+
+    <!-- =================================================
+         LIGHTNING
+    ================================================== -->
+
+    <a-entity id="lightning" visible="false">
+
+        <a-box
+            position="3 5 -15"
+            width="0.2"
+            height="5"
+            depth="0.2"
+            rotation="0 0 -20"
+            color="#ffffff"
+            material="emissive:#ffffff">
+        </a-box>
+
+    </a-entity>
+
+
+    <!-- =================================================
+         LIGHTS
+    ================================================== -->
+
+    <a-light
+        id="sunLight"
+        type="directional"
+        position="0 8 0"
+        intensity="1.8"
+        color="#ffffff">
+    </a-light>
+
+    <a-light
+        type="ambient"
+        intensity="0.8"
+        color="#ffffff">
+    </a-light>
+
+
+    <!-- =================================================
+         CAMERA
+    ================================================== -->
+
+    <a-camera
+        id="camera"
+        position="0 2 6"
+        look-controls="enabled: true">
+
+        <!-- Floating 3D title -->
+
+        <a-text
+            value="WEATHERVERSE"
+            position="0 2.8 -5"
+            align="center"
+            width="8"
+            color="#ffffff">
+        </a-text>
+
+    </a-camera>
+
+</a-scene>
+
+
+<!-- =====================================================
+     2D WEATHER INTERFACE
+===================================================== -->
+
+<div class="interface">
+
+    <header>
+
+        <div>
+            <h1>🌦️ WeatherVerse</h1>
+            <p>Immersive 3D Weather Forecast</p>
+        </div>
+
+        <button id="locationBtn">
+            📍 My Location
+        </button>
+
+    </header>
+
+
+    <!-- SEARCH -->
+
+    <div class="search">
+
+        <input
+            id="cityInput"
+            placeholder="Enter city name...">
+
+        <button id="searchBtn">
+            🔍 Search
+        </button>
+
+    </div>
+
+
+    <div id="loading">
+        Loading weather...
+    </div>
+
+    <div id="error"></div>
+
+
+    <!-- WEATHER -->
+
+    <div class="weather-panel">
+
+        <div>
+
+            <h2 id="cityName">
+                Bengaluru
+            </h2>
+
+            <p id="countryName">
+                India
+            </p>
+
+        </div>
+
+
+        <div class="weather-main">
+
+            <div id="weatherIcon">
+                ☀️
+            </div>
+
+            <div>
+
+                <span id="temperature">
+                    --
+                </span>
+
+                <span class="degree">
+                    °C
+                </span>
+
+                <p id="condition">
+                    Loading...
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="stats">
+
+            <div>
+                💧
+                <strong id="humidity">
+                    --
+                </strong>
+                <small>Humidity</small>
+            </div>
+
+            <div>
+                💨
+                <strong id="wind">
+                    --
+                </strong>
+                <small>Wind</small>
+            </div>
+
+            <div>
+                🌡️
+                <strong id="feels">
+                    --
+                </strong>
+                <small>Feels Like</small>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- FORECAST -->
+
+    <div class="forecast-panel">
+
+        <h2>7-Day Forecast</h2>
+
+        <div
+            id="forecast"
+            class="forecast">
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
